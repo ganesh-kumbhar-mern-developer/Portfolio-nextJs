@@ -1,238 +1,144 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import {
   Linkedin,
   Github,
   Instagram,
-  Download,
-  Code,
-  Palette,
-  Video,
-  Monitor,
   Mail,
+  ArrowRight,
+  Sparkles,
+  ArrowBigDown,
+  ArrowDown,
 } from "lucide-react";
-import { AnimatedBackground } from "../skills/AnimatedBackground.jsx";
-import PopUpForm from "../forms/PopUpForm.jsx";
-import Image from "next/image.js";
-const professions = [
-  { name: "Web Developer", icon: Monitor },
-  { name: "Programmer", icon: Code },
-  { name: "Web Designer", icon: Palette },
-  { name: "Video Editor", icon: Video },
+import { AnimatedBackground } from "@/components/skills/AnimatedBackground";
+import PopUpForm from "@/components/forms/PopUpForm";
+
+const roles = [
+  "MERN Stack Developer",
+  "React.js Developer",
+  "Next.js Developer",
+  "Full Stack Web Developer",
+  "Frontend Engineer",
+  "Performance-Focused UI Developer",
 ];
 
 export default function Home() {
-  const [angle, setAngle] = useState(0);
-  const [currentProfession, setCurrentProfession] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAngle((prev) => prev + 90);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentProfession((prev) => (prev + 1) % professions.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
+  const [currentRole, setCurrentRole] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const id = setInterval(
+      () => setCurrentRole((prev) => (prev + 1) % roles.length),
+      3000
+    );
+    return () => clearInterval(id);
+  }, [isInView]);
+
   const handleDownloadClick = () => {
     setIsFormOpen(true);
   };
-  const [isResume, setIsResume] = useState(false);
 
   return (
     <section
       id="home"
-      className="home relative max-h[100vh-84px] bg-black flex items-center overflow-hidden mt-16 lg:mt-20"
+      ref={sectionRef}
+      className="relative h-auto bg-gradient-to-b from-black via-[#0a0515] to-black overflow-hidden flex items-center"
     >
       <AnimatedBackground />
 
-      <div className="container mx-auto px-4 sm:px-8 relative z-10 mt-4 lg:mt-0">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="home-content space-y-6 lg:space-y-8 opacity-0 animate-fade-in">
-            {/* Greeting */}
-            <div
-              className="space-y-3 opacity-0 animate-slide-in"
-              style={{ animationDelay: "200ms" }}
-            >
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-300">
-                Hello, I am
-              </h3>
+      <div className="container mx-auto px-4 sm:px-8 py-16 lg:py-24 relative z-10">
+        <div className="w-full max-w-7xl mx-auto">
+          {/* Hero Content */}
+          <div
+            className="space-y-8 text-center opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            {/* Main Heading */}
+            <div className="space-y-6">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+                <span className="block bg-gradient-to-r from-purple-200 via-purple-100 to-purple-300 bg-clip-text text-transparent">
+                  Transforming Ideas
+                </span>
+                <span className="block bg-gradient-to-r from-purple-200 via-purple-100 to-purple-300 bg-clip-text text-transparent">
+                  Into Fast,
+                </span>
+                <span className="block bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent">
+                  Modern Digital Experiences
+                </span>
+              </h1>
 
-              <div className="space-y-1">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="inline-block bg-gradient-to-r from-[rgb(117,78,249)] to-[rgba(117,78,249,0.8)] bg-clip-text text-transparent">
-                    Ganesh
-                  </span>
-                  <span className="text-white ">Kumbhar</span>
+              {/* Subtitle with Rotating Role */}
+              <div className="flex flex-col items-center gap-4">
+                <h1 className="text-white text-3xl font-semibold">
+                  Ganesh Kumbhar{" "}
                 </h1>
+                <div className="h-2 flex items-center m-6">
+                  <h2 className="text-4xl font-bold sm:text-5xl text-purple-300 transition-all duration-500 inline-block">
+                    {roles[currentRole]}
+                  </h2>
+                </div>
               </div>
             </div>
 
             {/* Description */}
+            <p className="max-w-4xl mx-auto text-sm sm:text-base text-gray-400 leading-relaxed font-light">
+              Crafting{" "}
+              <span className="text-purple-300 font-medium">
+                performant, accessible, and beautiful interfaces
+              </span>{" "}
+              using React, Next.js, Node.js, and modern web technologies. I
+              specialize in building production-ready applications that users
+              love.
+            </p>
+
+            {/* CTA Buttons */}
             <div
-              className="space-y-4 lg:space-y-6 max-w-2xl opacity-0 animate-slide-in"
-              style={{ animationDelay: "400ms" }}
+              className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4"
+              style={{ animationDelay: "0.2s" }}
             >
-              <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed">
-                I'm a{" "}
-                <span className="font-semibold text-[rgb(117,78,249)]">
-                  Fullstack Web Developer
-                </span>{" "}
-                who loves to create beautiful and functional websites for people
-                who want to make a difference in the world.
-              </p>
-
-              <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed">
-                I am currently working at{" "}
-                <span className="font-medium">SevenMentor Pvt. Ltd.</span> as a{" "}
-                <br />
-                <span className="font-semibold text-[rgb(117,78,249)]">
-                  React Developer since Oct 2024
-                </span>
-              </p>
-            </div>
-
-            {/* Mobile Professions Display */}
-            <div
-              className="lg:hidden opacity-0 animate-slide-in"
-              style={{ animationDelay: "500ms" }}
-            >
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {professions.map((profession, index) => (
-                  <div
-                    key={profession.name}
-                    className="flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm rounded-2xl p-4 border-2 border-[rgb(117,78,249)] min-h-[100px] opacity-0 animate-fade-in hover:scale-105 hover:bg-[rgb(117,78,249)] transition-all duration-300"
-                    style={{ animationDelay: `${600 + index * 100}ms` }}
-                  >
-                    <profession.icon className="w-6 h-6 mb-2 text-white" />
-                    <h3 className="text-sm font-semibold text-center leading-tight text-[rgb(117,78,249)]">
-                      {profession.name}
-                    </h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Social Media */}
-            <div
-              className="flex space-x-4 sm:space-x-6 opacity-0 animate-slide-in"
-              style={{ animationDelay: "600ms" }}
-            >
-              {[
-                {
-                  href: "https://www.linkedin.com/in/ganesh-d-kumbhar",
-                  icon: Linkedin,
-                },
-                { href: "https://github.com/Ganesh-D-Kumbhar", icon: Github },
-                {
-                  href: "https://www.instagram.com/ganesh_kumbhar_211/profilecard/?igsh=MXFzbTNjNDJvcXByOA==",
-                  icon: Instagram,
-                },
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group relative p-2 bg-white/5 backdrop-blur-sm rounded-full border-2 border-[rgb(117,78,249)] transition-all duration-300 hover:bg-[rgb(117,78,249)] hover:border-white hover:scale-110"
-                >
-                  <social.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white transition-colors" />
-                </a>
-              ))}
-            </div>
-
-            {/* Download CV Button */}
-            <div className="flex items-center justify-start gap-[50px]">
-              <div
-                className="opacity-0 animate-slide-in"
-                style={{ animationDelay: "800ms" }}
+              <button
+                onClick={handleDownloadClick}
+                className="group relative px-8 py-3.5 text-sm sm:text-base font-semibold text-white rounded-lg bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-105 flex items-center justify-between gap-2"
               >
-                <div
-                  className="inline-flex items-center px-6 py-3 text-base sm:text-lg font-semibold text-white rounded-full transition-all duration-300 bg-[rgb(117,78,249)] shadow-[0_20px_40px_rgba(117,78,249,0.3)] border border-white cursor-pointer hover:scale-105 hover:shadow-[0_25px_50px_rgba(117,78,249,0.4)]"
-                  onClick={() => {
-                    handleDownloadClick();
-                    setIsResume(true);
-                  }}
-                >
-                  <Download className="w-5 h-5 sm:w-6 sm:h-6 mr-3" />
-                  Download CV
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Content - Desktop Only */}
-          <div
-            className="hidden lg:flex relative items-center justify-center h-[700px] opacity-0 animate-slide-in"
-            style={{ animationDelay: "300ms" }}
-          >
-            {/* Custom Overlay Shape */}
-            <div className="absolute top-0 right-0 w-0 h-0 border-t-[48vh] border-r-[350px] border-b-[48vh] border-l-[350px] border-t-[rgb(117,78,249)] border-r-[rgb(117,78,249)] border-b-[rgb(117,78,249)] border-l-transparent -mr-[120px] !z-30 overflow-hidden" />
-
-            {/* Home Image - Positioned to align bottom with overlay shape bottom */}
-            <div className="absolute bottom-22 left-40 pointer-events-none w-[480px] h-auto z-40">
-              <Image
-                src="/images/home.png"
-                alt="Profile"
-                width={480}
-                height={520}
-                className="w-full h-auto object-contain"
-              />
-            </div>
-
-            {/* Profession Container */}
-            <div className="relative w-full h-full flex items-center justify-center z-20">
-              <div
-                className="relative w-[500px] h-[500px] transition-transform duration-500 ease-in-out"
-                style={{ transform: `rotate(${angle}deg)` }}
+                <span>Download Resume</span>
+                <ArrowDown className="absolute right-3 w-4 h-4 text-2xl font-bold group-hover:translate-x-1 transition-transform" />
+              </button>
+              <a
+                href="#projects"
+                className="px-8 py-3.5 text-sm sm:text-base font-semibold text-purple-200 rounded-lg border border-purple-500/40 bg-white/5 hover:bg-white/10 hover:border-purple-400/60 transition-all duration-300 backdrop-blur-sm"
               >
-                {/* Circle Border */}
-                <div className="absolute inset-8 rounded-full border-4 border-[rgb(117,78,249)]" />
-
-                {/* Profession Items */}
-                {professions.map((profession, index) => {
-                  const stepAngle = index * 90 - 90;
-                  const radius = 200;
-                  const x = Math.cos((stepAngle * Math.PI) / 180) * radius;
-                  const y = Math.sin((stepAngle * Math.PI) / 180) * radius;
-
-                  return (
-                    <div
-                      key={profession.name}
-                      className="absolute flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm rounded-2xl p-4 border-2 border-[rgb(117,78,249)] min-w-[140px] min-h-[100px] z-10 transition-all duration-500 hover:scale-110 hover:bg-[rgb(117,78,249)]"
-                      style={{
-                        left: `calc(50% + ${x}px - 70px)`,
-                        top: `calc(50% + ${y}px - 50px)`,
-                        transform: `rotate(${-angle}deg)`, // Counter-rotate
-                      }}
-                    >
-                      <profession.icon className="w-8 h-8 mb-2 text-white" />
-                      <h3 className="text-sm font-semibold text-center leading-tight text-[rgb(117,78,249)]">
-                        {profession.name}
-                      </h3>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Center Glow */}
-              <div className="absolute w-32 h-32 rounded-full blur-2xl opacity-20 bg-[rgb(117,78,249)] animate-pulse" />
+                View Projects
+              </a>
             </div>
           </div>
         </div>
       </div>
+
       <PopUpForm
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
-        isResume={isResume}
+        isResume={true}
       />
     </section>
   );

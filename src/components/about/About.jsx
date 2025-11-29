@@ -40,42 +40,6 @@ const About = forwardRef((props, ref) => {
     { name: "MySQL", platform: "HackerRank", date: "Nov 2023", verified: true },
   ];
 
-  const skills = [
-    // Core Languages
-    "JavaScript (ES6+)",
-    "TypeScript",
-    "HTML",
-    "CSS",
-    "JSON",
-
-    // Frameworks & Libraries
-    "React.js",
-    "Next.js",
-    "Redux Toolkit",
-    "jQuery",
-    "Express",
-    "Bootstrap",
-    "Tailwind CSS",
-
-    // Backend & Databases
-    "Node.js",
-    "MongoDB",
-    "MySQL",
-    "REST APIs",
-
-    // Tools & Others
-    "Git",
-    "GitHub",
-    "NPM",
-    "Babel",
-    "Jest",
-
-    // Additional Skills
-    "Responsiveness",
-    "SEO",
-    "UI/UX",
-  ];
-
   const [isFormOpen, setIsFormOpen] = useState(false);
   const handleDownloadClick = () => {
     setIsFormOpen(true);
@@ -118,7 +82,7 @@ const About = forwardRef((props, ref) => {
 
                 <div className="relative bg-gray-900/80 backdrop-blur-2xl border border-gray-800/50 rounded-3xl p-8 shadow-2xl">
                   {/* Profile Image */}
-                  <div className="relative mb-8 group/image">
+                  {/* <div className="relative mb-8 group/image">
                     <div className="absolute inset-0 bg-gradient-to-r from-[rgb(117,78,249)] to-[rgb(147,108,255)] rounded-2xl blur-lg opacity-40 group-hover/image:opacity-60 transition-opacity duration-300" />
                     <div className="relative bg-gradient-to-br from-[rgb(117,78,249)]/10 via-transparent to-[rgb(147,108,255)]/10 rounded-2xl p-1 border border-[rgb(117,78,249)]/30">
                       <div className="bg-gray-900/50 rounded-xl p-1 backdrop-blur-xl">
@@ -131,21 +95,24 @@ const About = forwardRef((props, ref) => {
                         />
                       </div>
                     </div>
-
-                    {/* Status Indicator */}
                     <div className="absolute top-4 right-4 flex items-center space-x-2 bg-green-500/20 backdrop-blur-xl border border-green-500/30 rounded-full px-3 py-1">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                       <span className="text-green-400 text-xs font-medium">
                         Available
                       </span>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Name & Title */}
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-white mb-3">
                       Ganesh Kumbhar
                     </h2>
+                    <a 
+                    href="https://www.gktechhub.com/"
+                    className="text-white text-sm mb-4">
+                      https://www.gktechhub.com/
+                    </a>
                     <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[rgb(117,78,249)]/20 to-[rgb(147,108,255)]/20 backdrop-blur-xl border border-[rgb(117,78,249)]/30 rounded-full px-4 py-2 mb-4">
                       <Code2 className="w-4 h-4 text-[rgb(117,78,249)]" />
                       <span className="text-[rgb(117,78,249)] font-semibold">
@@ -246,45 +213,46 @@ const About = forwardRef((props, ref) => {
                   <div className="p-3 bg-gradient-to-r from-[rgb(117,78,249)]/20 to-[rgb(147,108,255)]/20 rounded-xl">
                     <User className="w-6 h-6 text-[rgb(117,78,249)]" />
                   </div>
-                  <h3 className="text-3xl font-bold text-white">
+                  <h2 className="text-3xl font-bold text-white">
                     Hi there, welcome to my website!
-                  </h3>
+                  </h2>
                 </div>
 
                 <div className="space-y-6 text-gray-300 leading-relaxed">
                   <p className="text-lg">
                     I'm{" "}
-                    <span className="font-bold bg-gradient-to-r from-[rgb(117,78,249)] to-[rgb(147,108,255)] bg-clip-text text-transparent">
+                    <strong className="bg-gradient-to-r from-[rgb(117,78,249)] to-[rgb(147,108,255)] bg-clip-text text-transparent">
                       Ganesh Kumbhar
-                    </span>
+                    </strong>
                     , a passionate{" "}
-                    <span className="font-semibold text-[rgb(117,78,249)]">
+                    <strong className="text-[rgb(117,78,249)]">
                       Fullstack Developer
-                    </span>{" "}
-                    who enjoys learning new technologies and solving problems
-                    with code!
+                    </strong>{" "}
+                    specializing in{" "}
+                    <strong>MERN Stack, React.js, Next.js</strong>, and building{" "}
+                    <strong>scalable web applications</strong>.
                   </p>
 
                   <p>
-                    I specialize in building scalable web applications using
-                    modern JavaScript frameworks. I'm skilled at translating
-                    business requirements into optimized code, ensuring
-                    technical solutions align with client needs.
+                    I craft{" "}
+                    <strong>production-ready, modern web applications</strong>{" "}
+                    that optimize performance, accessibility, and user
+                    experience across platforms.
                   </p>
 
                   <p>
-                    Dedicated to continuous learning and self-improvement, I
-                    showcase a diverse portfolio of engaging interactive
-                    projects designed to enhance user experiences and drive user
-                    engagement across platforms.
+                    Dedicated to continuous learning, I deliver{" "}
+                    <strong>
+                      interactive and high-performance digital experiences
+                    </strong>{" "}
+                    that increase user engagement.
                   </p>
 
                   <div className="flex items-center space-x-2 p-4 bg-gradient-to-r from-[rgb(117,78,249)]/10 to-[rgb(147,108,255)]/10 rounded-xl border border-[rgb(117,78,249)]/20">
                     <Heart className="w-5 h-5 text-[rgb(117,78,249)]" />
                     <p className="text-[rgb(117,78,249)] font-medium">
-                      Thank you for visiting my website and getting to know me
-                      better. If you have any feedback or suggestions, please
-                      let me know. I'd love to hear from you!
+                      Thank you for visiting! Feel free to reach out for
+                      collaboration or feedback.
                     </p>
                   </div>
                 </div>
@@ -327,36 +295,6 @@ const About = forwardRef((props, ref) => {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Skills Section */}
-            <div
-              className="relative group opacity-0 animate-slide-in"
-              style={{ animationDelay: "600ms" }}
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-[rgb(117,78,249)]/20 to-[rgb(147,108,255)]/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
-              <div className="relative bg-gray-900/40 backdrop-blur-2xl border border-gray-800/50 rounded-2xl p-8">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="p-3 bg-gradient-to-r from-[rgb(117,78,249)]/20 to-[rgb(147,108,255)]/20 rounded-xl">
-                    <Zap className="w-6 h-6 text-[rgb(117,78,249)]" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">
-                    Technical Skills
-                  </h3>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  {skills.map((skill, index) => (
-                    <div
-                      key={skill}
-                      className="px-4 py-2 bg-gradient-to-r from-gray-800/60 to-gray-700/60 border border-gray-700/50 hover:border-[rgb(117,78,249)]/50 rounded-xl text-gray-300 hover:text-white transition-all duration-300 cursor-default opacity-0 animate-fade-in hover:scale-105 hover:-translate-y-1"
-                      style={{ animationDelay: `${600 + index * 50}ms` }}
-                    >
-                      {skill}
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>

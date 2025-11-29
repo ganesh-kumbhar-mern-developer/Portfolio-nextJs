@@ -70,29 +70,6 @@ const Footer = () => {
 
   return (
     <>
-      <style jsx global>{`
-        @keyframes scroll-to-top-ripple {
-          0% {
-            box-shadow:
-              rgba(55, 55, 55, 0.2) 0px 4px 10px,
-              rgba(117, 78, 249, 0.2) 0px 0px 0px 0px,
-              rgba(147, 108, 255, 0.2) 0px 0px 0px 5px,
-              rgba(117, 78, 249, 0.13) 0px 0px 0px 10px;
-          }
-          100% {
-            box-shadow:
-              rgba(55, 55, 55, 0.2) 0px 4px 10px,
-              rgba(117, 78, 249, 0.2) 0px 0px 0px 5px,
-              rgba(147, 108, 255, 0.2) 0px 0px 0px 10px,
-              rgba(117, 78, 249, 0.13) 0px 0px 0px 20px;
-          }
-        }
-
-        .scroll-ripple {
-          animation: scroll-to-top-ripple 1s linear infinite;
-        }
-      `}</style>
-
       <footer className="footer relative bg-black text-white overflow-hidden pt-10">
         <motion.div
           className="absolute -top-80 -left-80 w-[900px] h-[900px] rounded-full opacity-20"
@@ -273,26 +250,10 @@ const Footer = () => {
               className="text-gray-400 text-sm flex items-center"
             >
               <Code className="w-4 h-4 mr-2" />
-              Copyright © {currentYear} | All rights reserved
+            Copyright &copy; {currentYear} | gktechhub.com | All rights reserved
             </motion.p>
           </div>
         </div>
-
-        {/* Scroll to Top Button - FIXED */}
-        <motion.button
-          onClick={scrollToTop}
-          className={`fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full shadow-lg shadow-purple-500/25 scroll-ripple hover:shadow-purple-500/40 transition-all duration-300 z-[9999] flex items-center justify-center hover:scale-110 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{
-            opacity: isVisible ? 1 : 0,
-            y: isVisible ? 0 : 20,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <ArrowUp className="w-6 h-6" />
-        </motion.button>
       </footer>
       <ContactPopUpForm isOpen={isContactPopupOpen} onClose={() => setIsContactPopupOpen(false)} />
     </>

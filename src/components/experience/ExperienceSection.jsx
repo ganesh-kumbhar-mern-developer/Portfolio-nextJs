@@ -1,6 +1,14 @@
 "use client";
-import { Calendar, MapPin, Code, Briefcase, Trophy, Zap, ExternalLink } from "lucide-react"
-import { AnimatedBackground } from "../skills/AnimatedBackground.jsx"
+import {
+  Calendar,
+  MapPin,
+  Code,
+  Briefcase,
+  Trophy,
+  Zap,
+  ExternalLink,
+} from "lucide-react";
+import { AnimatedBackground } from "../skills/AnimatedBackground.jsx";
 
 const ExperienceSection = () => {
   const experiences = [
@@ -11,12 +19,20 @@ const ExperienceSection = () => {
       location: "Pune, Maharashtra",
       duration: "Feb 2025 – Present",
       type: "Full-time",
-      description: "Developing full-stack MERN applications including official websites with 60% user engagement increase. Implementing micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
-      technologies: ["React.js", "Next.js", "Node.js", "MongoDB", "Tailwind", "REST APIs"],
+      description:
+        "Developing full-stack MERN applications including official websites with 60% user engagement increase. Implementing micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
+      technologies: [
+        "React.js",
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "Tailwind",
+        "REST APIs",
+      ],
       achievements: [
         "60% user engagement increase",
         "Micro-frontend architecture",
-        "Secure API & email integration"
+        "Secure API & email integration",
       ],
       icon: Code,
       current: true,
@@ -28,17 +44,18 @@ const ExperienceSection = () => {
       location: "Pune, Maharashtra",
       duration: "Oct 2024 – Jan 2025",
       type: "Internship",
-      description: "Contributed to MERN stack development, CMS/LMS modules, role-based access control, and responsive UI implementation.",
+      description:
+        "Contributed to MERN stack development, CMS/LMS modules, role-based access control, and responsive UI implementation.",
       technologies: ["React.js", "JavaScript", "HTML5", "CSS3", "Git"],
       achievements: [
         "CMS & LMS development",
         "Role-based access control",
-        "Responsive UI implementation"
+        "Responsive UI implementation",
       ],
       icon: Code,
       current: false,
-    }
-  ]
+    },
+  ];
 
   return (
     <section className="py-12 relative bg-black/95" id="experience">
@@ -47,9 +64,11 @@ const ExperienceSection = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-6xl font-bold bg-gradient-to-r from-[rgb(173,151,245)] to-[rgb(147,108,255)] bg-clip-text text-transparent mb-4">
-            <span className="text-white" >1.5+ Years</span> Of Experience
+            <span className="text-white">1.5+ Years</span> Of Experience
           </h2>
-          <p className="text-gray-400 text-lg">Professional journey & key projects</p>
+          <p className="text-gray-400 text-lg">
+            Professional journey & key projects
+          </p>
         </div>
 
         {/* Compact Timeline */}
@@ -72,11 +91,15 @@ const ExperienceSection = () => {
                         <exp.icon className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl lg:text-2xl font-bold text-white mb-1 group-hover:text-[rgb(117,78,249)] transition-colors">{exp.title}</h3>
-                        <p className="text-[rgb(117,78,249)] font-semibold text-base">{exp.company}</p>
+                        <h3 className="text-xl lg:text-2xl font-bold text-white mb-1 group-hover:text-[rgb(117,78,249)] transition-colors">
+                          {exp.title}
+                        </h3>
+                        <p className="text-[rgb(117,78,249)] font-semibold text-base">
+                          {exp.company}
+                        </p>
                       </div>
                     </div>
-                    
+
                     {/* Duration Badge */}
                     <div className="flex flex-col items-end gap-1 text-sm lg:text-base">
                       <div className="flex items-center gap-1 text-gray-400">
@@ -99,8 +122,13 @@ const ExperienceSection = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 border-t border-[rgb(117,78,249)]/10 pt-6">
                     {/* Description & Tech */}
                     <div className="space-y-3">
-                      <p className="text-gray-300 text-sm lg:text-base leading-relaxed">{exp.description}</p>
-                      
+                      <p className="text-gray-300 text-sm lg:text-base leading-relaxed">
+                        {exp.description}{" "}
+                        <strong>{exp.technologies.join(", ")}</strong> expertise
+                        applied for <strong>scalable web applications</strong>{" "}
+                        and <strong>high-performance digital solutions</strong>.
+                      </p>
+
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-2 pt-2">
                         {exp.technologies.map((tech, i) => (
@@ -122,7 +150,10 @@ const ExperienceSection = () => {
                       </h5>
                       <ul className="space-y-1.5">
                         {exp.achievements.map((ach, i) => (
-                          <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-gray-300 text-sm"
+                          >
                             <Zap className="w-3.5 h-3.5 text-[rgb(117,78,249)] mt-0.5 flex-shrink-0" />
                             <span>{ach}</span>
                           </li>
@@ -135,21 +166,9 @@ const ExperienceSection = () => {
             ))}
           </div>
         </div>
-
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <p className="text-gray-400 mb-6 text-lg">Ready to build something great together?</p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[rgb(117,78,249)] to-[rgb(147,108,255)] text-white font-semibold rounded-xl hover:from-[rgb(147,108,255)] hover:to-[rgb(117,78,249)] transition-all duration-300 shadow-lg shadow-[rgb(117,78,249)]/30 hover:shadow-[rgb(117,78,249)]/50 hover:scale-105 text-base"
-          >
-            <span>Let's Connect</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ExperienceSection
+export default ExperienceSection;

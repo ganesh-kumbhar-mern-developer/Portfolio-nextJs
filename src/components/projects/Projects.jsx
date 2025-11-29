@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import dreamHomesImage from "../../../public/images/dream-homes.png";
 import quickCartImage from "../../../public/images/quick-cart.png";
+import { redirect } from "next/navigation.js";
 import Image from "next/image.js";
 
 const projects = [
@@ -33,6 +34,7 @@ const projects = [
     ],
     technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
     image: dreamHomesImage,
+    url: "/dream-home",
     liveUrl: "https://dream-homes-fawn.vercel.app/",
     githubUrl: "https://github.com/Ganesh-D-Kumbhar/Dream-Homes",
     icon: Home,
@@ -40,27 +42,28 @@ const projects = [
     bgGradient: "from-emerald-500/10 via-teal-500/5 to-cyan-500/10",
     stats: { properties: "20+", agents: "5+", cities: "5+" },
   },
-  {
-    id: 2,
-    title: "Quick Cart",
-    category: "E-Commerce Platform",
-    description:
-      "Revolutionary e-commerce solution with AI-powered recommendations, real-time analytics, and seamless payment processing.",
-    features: [
-      "Add to Cart & Wishlist Functionality",
-      "Advanced Property Filtering",
-      "Responsive Design for All Devices",
-      "Secure User Profile Management",
-    ],
-    technologies: ["React.js", "Vite", "REST APIs", "Tailwind CSS"],
-    image: quickCartImage,
-    liveUrl: "https://quick-cart-silk-theta.vercel.app/",
-    githubUrl: "https://github.com/Ganesh-D-Kumbhar/Quick-Cart",
-    icon: ShoppingCart,
-    color: "from-emerald-500 to-teal-600",
-    bgGradient: "from-purple-500/10 via-indigo-500/5 to-blue-500/10",
-    stats: { users: "10K+", transactions: "$2M+", uptime: "99.9%" },
-  },
+  // {
+  //   id: 2,
+  //   title: "Quick Cart",
+  //   category: "E-Commerce Platform",
+  //   description:
+  //     "Revolutionary e-commerce solution with AI-powered recommendations, real-time analytics, and seamless payment processing.",
+  //   features: [
+  //     "Add to Cart & Wishlist Functionality",
+  //     "Advanced Property Filtering",
+  //     "Responsive Design for All Devices",
+  //     "Secure User Profile Management",
+  //   ],
+  //   technologies: ["React.js", "Vite", "REST APIs", "Tailwind CSS"],
+  //   image: quickCartImage,
+  //  url: "/quick-cart",
+  //   liveUrl: "https://quick-cart-silk-theta.vercel.app/",
+  //   githubUrl: "https://github.com/Ganesh-D-Kumbhar/Quick-Cart",
+  //   icon: ShoppingCart,
+  //   color: "from-emerald-500 to-teal-600",
+  //   bgGradient: "from-purple-500/10 via-indigo-500/5 to-blue-500/10",
+  //   stats: { users: "10K+", transactions: "$2M+", uptime: "99.9%" },
+  // },
 ];
 
 export default function ProjectsSection() {
@@ -118,7 +121,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Project Navigation */}
-        <div className="flex justify-center mb-16">
+        {/* <div className="flex justify-center mb-16">
           <div className="flex bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-2">
             {projects.map((project, index) => {
               const IconComponent = project.icon;
@@ -138,7 +141,7 @@ export default function ProjectsSection() {
               );
             })}
           </div>
-        </div>
+        </div> */}
 
         {/* Active Project Display */}
         <div className="relative">
@@ -239,15 +242,14 @@ export default function ProjectsSection() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <a
-                        target="_blank"
-                        href={project.liveUrl}
+                      <button
+                        onClick={() => redirect(project.url)}
                         className={`flex items-center justify-center bg-gradient-to-r ${project.color} hover:scale-105 text-white font-semibold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 group`}
                       >
                         <Eye className="w-5 h-5 mr-2" />
                         View Live Demo
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                      </a>
+                      </button>
                       <a
                         target="_blank"
                         href={project.githubUrl}

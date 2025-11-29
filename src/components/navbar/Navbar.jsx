@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
@@ -65,25 +66,8 @@ const Navbar = ({ darkMode, toggleDarkMode, activeSection, sectionRefs }) => {
             className="logo flex items-center space-x-2 cursor-pointer"
             onClick={() => handleNavClick("home")}
           >
-            <div className="relative">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 20,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                }}
-                className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-sm opacity-75"
-              />
-              <div className="relative bg-black border-2 border-purple-500 rounded-full p-2">
-                <Sparkles className="w-6 h-6 text-purple-400" />
-              </div>
-            </div>
             <div className="text-white font-bold text-xl">
-              <span className="text-purple-400">Developer</span>
-              <span className="bg-gradient-to-r from-purple-400 to-white bg-clip-text text-transparent">
-                GK
-              </span>
+              <Image src="/logo2.png" width={200} height={100} alt="Logo" />
             </div>
           </motion.div>
 

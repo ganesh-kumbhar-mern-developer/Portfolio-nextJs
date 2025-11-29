@@ -13,6 +13,7 @@ import Footer from "@/components/footer/Footer.jsx";
 import ToastProvider from "@/components/toaster/ToastProvider.jsx";
 import ExperienceSection from "@/components/experience/ExperienceSection.jsx";
 import EducationSection from "@/components/education/EducationSection.jsx";
+import ContactButtons from "@/components/contactButtons/ContactButtons";
 
 export default function HomePage() {
   const [darkMode, setDarkMode] = useState(false);
@@ -77,7 +78,7 @@ export default function HomePage() {
     const wakeServer = async () => {
       try {
         await axios.get("https://portfolio-form-backend-t69y.onrender.com/api/wake-up");
-      } catch (e) {}
+      } catch (e) { }
     };
     wakeServer();
   }, []);
@@ -85,34 +86,34 @@ export default function HomePage() {
   // ---------------------------
   // ✅ JSON-LD Schema (SEO)
   // ---------------------------
-  const schemaData = {
+  const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Ganesh Kumbhar",
-    "alternateName": "GANESH KUMBHAR",
-    "url": "https://gktechhub.com",
-    "image": "https://gktechhub.com/profile.jpg",
-    "jobTitle": "MERN Stack Developer | React.js Developer | Full Stack Developer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Seven Mentor Corporate Services Pvt. Ltd."
-    },
-    "email": "mailto:ganeshhh2003@gmail.com",
-    "telephone": "+91-9096378354",
-    "address": {
+    name: "Ganesh Kumbhar",
+    jobTitle: "MERN Stack Developer",
+    email: "mailto:ganeshhh2003@gmail.com",
+    telephone: "+919096378354",
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": "Pune",
-      "addressRegion": "Maharashtra",
-      "postalCode": "411004",
-      "addressCountry": "IN"
+      addressLocality: "Pune",
+      addressRegion: "Maharashtra",
+      postalCode: "411004",
+      addressCountry: "IN",
     },
-    "sameAs": [
-      "https://github.com/ganeshhh2003",
-      "https://linkedin.com/in/ganeshhh2003",
-      "https://gktechhub.com",
-      "https://www.hackerrank.com/profile/ganeshhh2003"
+    url: "https://gktechhub.com",
+    image: "https://gktechhub.com/og-image.png",
+    sameAs: [
+      "https://github.com/Ganesh-D-Kumbhar",
+      "https://www.linkedin.com/in/ganesh-d-kumbhar",
+      "https://www.hackerrank.com/profile/ganeshhh2003",
+      "https://www.instagram.com/ganesh_kumbhar_211",
+      "https://www.facebook.com/ganeshkumbhar211",
     ],
-    "knowsAbout": [
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Karmayogi Institute of Technology, Pandharpur",
+    },
+    knowsAbout: [
       "MERN Stack",
       "React.js",
       "Next.js",
@@ -120,48 +121,166 @@ export default function HomePage() {
       "Express.js",
       "MongoDB",
       "JavaScript",
-      "Tailwind CSS",
-      "REST API Development",
+      "Full Stack Development",
+      "REST APIs",
+      "Micro Frontends",
       "UI/UX",
-      "Micro-Frontend Architecture",
-      "SEO Optimization",
-      "Performance Optimization"
-    ],
-    "description":
-      "Ganesh Kumbhar is a MERN Stack Developer with 1.2+ years of experience building scalable web applications using React.js, Node.js, Express.js, and MongoDB.",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Karmayogi Institute of Technology Shelve, Pandharpur",
-      "address": "Solapur, Maharashtra"
-    },
-    "award": [
-      "Gold Badge in JavaScript - HackerRank",
-      "Gold Badge in Java - HackerRank",
-      "React Certification",
-      "CSS Certification"
-    ],
-    "skills": [
-      "JavaScript ES6+",
-      "React.js",
-      "Next.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "MySQL",
-      "Redux Toolkit",
       "Tailwind CSS",
       "Bootstrap",
-      "jQuery"
-    ]
+      "AWS Basics",
+      "Git/GitHub",
+    ],
   };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "GK TechHub – Portfolio of Ganesh Kumbhar",
+    url: "https://gktechhub.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://gktechhub.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://gktechhub.com",
+      },
+    ],
+  };
+
 
   return (
     <>
       {/* Inject JSON-LD Schema into Head */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personSchema),
+        }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": "Dream Homes – Real Estate Website",
+            "description":
+              "A modern, responsive real estate web application featuring property listings for 2BHK, 3BHK, 4BHK, penthouses, villas, studios, duplexes, and townhouses for both rent and sale.",
+            "image": "https://gktechhub.com/dream-homes/og-image.jpg",
+            "url": "https://gktechhub.com/dream-homes",
+            "creator": {
+              "@type": "Person",
+              "name": "Ganesh Kumbhar",
+              "url": "https://gktechhub.com",
+            },
+            "dateCreated": "2025-01-15",
+            "keywords": [
+              "Real Estate Website",
+              "Property Listings",
+              "React Developer",
+              "Frontend Developer",
+              "Buy Property",
+              "Rent Property",
+              "Dream Homes",
+              "Real Estate App",
+              "MERN Real Estate Project"
+            ],
+            "inLanguage": "en",
+          }),
+        }}
+      />
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ganesh Kumbhar",
+      "jobTitle": "Fullstack Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Seven Mentor Pvt. Ltd."
+      },
+      "sameAs": [
+        "https://github.com/Ganesh-D-Kumbhar",
+        "https://www.linkedin.com/in/ganesh-d-kumbhar",
+        "https://www.hackerrank.com/profile/ganeshhh2003"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Karmayogi Institute of Technology, Pandharpur"
+      },
+      "url": "https://gktechhub.com",
+      "email": "mailto:ganeshhh2003@gmail.com",
+      "telephone": "+91 9096378354"
+    }),
+  }}
+/>
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Ganesh Kumbhar",
+      jobTitle: "Fullstack Developer",
+      worksFor: {
+        "@type": "Organization",
+        name: "Seven Mentor Corporate Services Pvt. Ltd."
+      },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Karmayogi Institute of Technology, Pandharpur"
+      },
+      hasOccupation: [
+        {
+          "@type": "Occupation",
+          name: "ReactJs Developer",
+          description: "Developing full-stack MERN applications, implementing micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
+          startDate: "2025-02",
+          employmentType: "Full-time"
+        },
+        {
+          "@type": "Occupation",
+          name: "ReactJs Developer (Internship)",
+          description: "Contributed to MERN stack development, CMS/LMS modules, role-based access control, and responsive UI implementation.",
+          startDate: "2024-10",
+          endDate: "2025-01",
+          employmentType: "Internship"
+        }
+      ],
+      url: "https://gktechhub.com",
+      sameAs: [
+        "https://github.com/Ganesh-D-Kumbhar",
+        "https://www.linkedin.com/in/ganesh-d-kumbhar",
+        "https://www.hackerrank.com/profile/ganeshhh2003"
+      ]
+    }),
+  }}
+/>
 
       <ToastProvider />
 
@@ -190,6 +309,7 @@ export default function HomePage() {
         <div ref={certificationsRef}><Certifications /></div>
         <div ref={projectsRef}><Projects /></div>
         <div ref={contactRef}><Contact /></div>
+        <ContactButtons />
       </div>
 
       <Footer />
