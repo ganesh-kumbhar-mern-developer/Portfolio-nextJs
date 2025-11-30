@@ -14,43 +14,54 @@ const ExperienceSection = () => {
   const experiences = [
     {
       id: 1,
-      title: "ReactJs Developer",
+      title: "MERN Stack Developer",
       company: "Seven Mentor Corporate Services Pvt. Ltd.",
-      location: "Pune, Maharashtra",
-      duration: "Feb 2025 – Present",
+      location: "Pune, Maharashtra - 411004",
+      duration: "February 2025 – Present",
       type: "Full-time",
       description:
-        "Developing full-stack MERN applications including official websites with 60% user engagement increase. Implementing micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
+        "Built multiple full-stack applications using the MERN stack, contributing to enterprise systems such as SevenMentor and IT Education Centre websites, resulting in a 60% increase in user engagement.",
       technologies: [
         "React.js",
         "Next.js",
         "Node.js",
+        "Express.js",
         "MongoDB",
-        "Tailwind",
+        "Tailwind CSS",
         "REST APIs",
       ],
       achievements: [
         "60% user engagement increase",
-        "Micro-frontend architecture",
-        "Secure API & email integration",
+        "Developed RESTful APIs with Node.js & Express.js",
+        "Implemented backend workflows using NodeMailer with OAuth2.0",
+        "Collaborated with Design, QA, and PM teams",
+        "Worked on micro-frontend architecture",
       ],
       icon: Code,
       current: true,
     },
     {
       id: 2,
-      title: "ReactJs Developer (Internship)",
+      title: "ReactJs Developer",
       company: "Seven Mentor Corporate Services Pvt. Ltd.",
-      location: "Pune, Maharashtra",
-      duration: "Oct 2024 – Jan 2025",
+      location: "Pune, Maharashtra - 411004",
+      duration: "October 2024 – January 2025",
       type: "Internship",
       description:
-        "Contributed to MERN stack development, CMS/LMS modules, role-based access control, and responsive UI implementation.",
-      technologies: ["React.js", "JavaScript", "HTML5", "CSS3", "Git"],
+        "Contributed to MERN stack development, CMS/LMS modules, role-based access control, and responsive UI implementation for enterprise systems.",
+      technologies: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Tailwind CSS",
+        "Bootstrap",
+      ],
       achievements: [
-        "CMS & LMS development",
-        "Role-based access control",
-        "Responsive UI implementation",
+        "CMS & LMS module development",
+        "Role-based access control implementation",
+        "Responsive UI development",
+        "Secure REST API integration",
       ],
       icon: Code,
       current: false,
@@ -64,7 +75,7 @@ const ExperienceSection = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-6xl font-bold bg-gradient-to-r from-[rgb(173,151,245)] to-[rgb(147,108,255)] bg-clip-text text-transparent mb-4">
-            <span className="text-white">1.5+ Years</span> Of Experience
+            <span className="text-white">1.2+ Years</span> Of Experience
           </h2>
           <p className="text-gray-400 text-lg">
             Professional journey & key projects

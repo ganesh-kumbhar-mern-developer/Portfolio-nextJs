@@ -8,11 +8,7 @@ function ContactButtons({ message, whatsappno, phoneno }) {
   const whatsappNumber = whatsappno || "NA";
   const phoneNumber = phoneno || "NA";
 
-  const cleanedTitle =
-    message
-      ?.replace(/\b(training|classes|Training|Classes|Course|course)\b/gi, "")
-      .replace(/\s+/g, " ")
-      .trim() || "a";
+  const cleanedTitle = message;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -79,7 +75,7 @@ function ContactButtons({ message, whatsappno, phoneno }) {
             {/* WhatsApp Option */}
             <div className="flex items-center">
               <Link
-                href={`https://api.whatsapp.com/send?phone=+91${whatsappNumber}&text=Hi+I+am+looking+for+${cleanedTitle}+Course`}
+                href={`https://api.whatsapp.com/send?phone=+91${whatsappNumber}&text=Hi+I+am+looking+for+${cleanedTitle}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat with us"

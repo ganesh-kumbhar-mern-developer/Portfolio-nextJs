@@ -58,6 +58,12 @@ export default function Home() {
   const handleDownloadClick = () => {
     setIsFormOpen(true);
   };
+   const handleViewProjectsClick = () => {
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <section
@@ -124,12 +130,12 @@ export default function Home() {
                 <span>Download Resume</span>
                 <ArrowDown className="absolute right-3 w-4 h-4 text-2xl font-bold group-hover:translate-x-1 transition-transform" />
               </button>
-              <a
-                href="#projects"
+              <button
+                onClick={handleViewProjectsClick}
                 className="px-8 py-3.5 text-sm sm:text-base font-semibold text-purple-200 rounded-lg border border-purple-500/40 bg-white/5 hover:bg-white/10 hover:border-purple-400/60 transition-all duration-300 backdrop-blur-sm"
               >
                 View Projects
-              </a>
+              </button>
             </div>
           </div>
         </div>

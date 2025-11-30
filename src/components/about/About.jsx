@@ -23,23 +23,6 @@ import Image from "next/image";
 const About = forwardRef((props, ref) => {
   const containerRef = useRef(null);
 
-  const certifications = [
-    {
-      name: "React",
-      platform: "HackerRank",
-      date: "June 2024",
-      verified: true,
-    },
-    { name: "CSS", platform: "HackerRank", date: "June 2024", verified: true },
-    {
-      name: "JavaScript",
-      platform: "HackerRank",
-      date: "May 2024",
-      verified: true,
-    },
-    { name: "MySQL", platform: "HackerRank", date: "Nov 2023", verified: true },
-  ];
-
   const [isFormOpen, setIsFormOpen] = useState(false);
   const handleDownloadClick = () => {
     setIsFormOpen(true);
@@ -81,27 +64,6 @@ const About = forwardRef((props, ref) => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-[rgb(117,78,249)] to-[rgb(147,108,255)] rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
 
                 <div className="relative bg-gray-900/80 backdrop-blur-2xl border border-gray-800/50 rounded-3xl p-8 shadow-2xl">
-                  {/* Profile Image */}
-                  {/* <div className="relative mb-8 group/image">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[rgb(117,78,249)] to-[rgb(147,108,255)] rounded-2xl blur-lg opacity-40 group-hover/image:opacity-60 transition-opacity duration-300" />
-                    <div className="relative bg-gradient-to-br from-[rgb(117,78,249)]/10 via-transparent to-[rgb(147,108,255)]/10 rounded-2xl p-1 border border-[rgb(117,78,249)]/30">
-                      <div className="bg-gray-900/50 rounded-xl p-1 backdrop-blur-xl">
-                        <Image
-                          src="/images/gk-about-2.png"
-                          width={400}
-                          height={400}
-                          alt="Ganesh Kumbhar - Full Stack Developer"
-                          className="w-auto h-80 rounded-xl object-cover transition-transform duration-500 group-hover/image:scale-105"
-                        />
-                      </div>
-                    </div>
-                    <div className="absolute top-4 right-4 flex items-center space-x-2 bg-green-500/20 backdrop-blur-xl border border-green-500/30 rounded-full px-3 py-1">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                      <span className="text-green-400 text-xs font-medium">
-                        Available
-                      </span>
-                    </div>
-                  </div> */}
 
                   {/* Name & Title */}
                   <div className="text-center mb-8">

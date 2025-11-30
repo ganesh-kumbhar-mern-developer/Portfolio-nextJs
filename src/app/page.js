@@ -212,75 +212,75 @@ export default function HomePage() {
         }}
       />
       <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Ganesh Kumbhar",
-      "jobTitle": "Fullstack Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Seven Mentor Pvt. Ltd."
-      },
-      "sameAs": [
-        "https://github.com/Ganesh-D-Kumbhar",
-        "https://www.linkedin.com/in/ganesh-d-kumbhar",
-        "https://www.hackerrank.com/profile/ganeshhh2003"
-      ],
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Karmayogi Institute of Technology, Pandharpur"
-      },
-      "url": "https://gktechhub.com",
-      "email": "mailto:ganeshhh2003@gmail.com",
-      "telephone": "+91 9096378354"
-    }),
-  }}
-/>
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Ganesh Kumbhar",
+            "jobTitle": "Fullstack Developer",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Seven Mentor Pvt. Ltd."
+            },
+            "sameAs": [
+              "https://github.com/Ganesh-D-Kumbhar",
+              "https://www.linkedin.com/in/ganesh-d-kumbhar",
+              "https://www.hackerrank.com/profile/ganeshhh2003"
+            ],
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Karmayogi Institute of Technology, Pandharpur"
+            },
+            "url": "https://gktechhub.com",
+            "email": "mailto:ganeshhh2003@gmail.com",
+            "telephone": "+91 9096378354"
+          }),
+        }}
+      />
 
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: "Ganesh Kumbhar",
-      jobTitle: "Fullstack Developer",
-      worksFor: {
-        "@type": "Organization",
-        name: "Seven Mentor Corporate Services Pvt. Ltd."
-      },
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "Karmayogi Institute of Technology, Pandharpur"
-      },
-      hasOccupation: [
-        {
-          "@type": "Occupation",
-          name: "ReactJs Developer",
-          description: "Developing full-stack MERN applications, implementing micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
-          startDate: "2025-02",
-          employmentType: "Full-time"
-        },
-        {
-          "@type": "Occupation",
-          name: "ReactJs Developer (Internship)",
-          description: "Contributed to MERN stack development, CMS/LMS modules, role-based access control, and responsive UI implementation.",
-          startDate: "2024-10",
-          endDate: "2025-01",
-          employmentType: "Internship"
-        }
-      ],
-      url: "https://gktechhub.com",
-      sameAs: [
-        "https://github.com/Ganesh-D-Kumbhar",
-        "https://www.linkedin.com/in/ganesh-d-kumbhar",
-        "https://www.hackerrank.com/profile/ganeshhh2003"
-      ]
-    }),
-  }}
-/>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Ganesh Kumbhar",
+            jobTitle: "Fullstack Developer",
+            worksFor: {
+              "@type": "Organization",
+              name: "Seven Mentor Corporate Services Pvt. Ltd."
+            },
+            alumniOf: {
+              "@type": "CollegeOrUniversity",
+              name: "Karmayogi Institute of Technology, Pandharpur"
+            },
+            hasOccupation: [
+              {
+                "@type": "Occupation",
+                name: "ReactJs Developer",
+                description: "Developing full-stack MERN applications, implementing micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
+                startDate: "2025-02",
+                employmentType: "Full-time"
+              },
+              {
+                "@type": "Occupation",
+                name: "ReactJs Developer (Internship)",
+                description: "Contributed to MERN stack development, CMS/LMS modules, role-based access control, and responsive UI implementation.",
+                startDate: "2024-10",
+                endDate: "2025-01",
+                employmentType: "Internship"
+              }
+            ],
+            url: "https://gktechhub.com",
+            sameAs: [
+              "https://github.com/Ganesh-D-Kumbhar",
+              "https://www.linkedin.com/in/ganesh-d-kumbhar",
+              "https://www.hackerrank.com/profile/ganeshhh2003"
+            ]
+          }),
+        }}
+      />
 
       <ToastProvider />
 
@@ -309,7 +309,12 @@ export default function HomePage() {
         <div ref={certificationsRef}><Certifications /></div>
         <div ref={projectsRef}><Projects /></div>
         <div ref={contactRef}><Contact /></div>
-        <ContactButtons />
+        <ContactButtons
+          message="MERN Stack Developer consultation"
+          whatsappno="9096378354"
+          phoneno="9096378354"
+        />
+
       </div>
 
       <Footer />

@@ -54,7 +54,7 @@ const PopUpForm = ({ isOpen, onClose }) => {
   const downloadResume = useCallback(() => {
     try {
       const link = document.createElement("a")
-      link.href = "/assets/UpdatedResume.pdf"
+      link.href = "/Ganesh-Kumbhar-Resume.pdf"
       link.download = "Ganesh-Kumbhar-Resume.pdf"
       link.style.display = "none"
       document.body.appendChild(link)

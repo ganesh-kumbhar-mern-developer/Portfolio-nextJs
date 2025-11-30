@@ -92,6 +92,7 @@ export default function ProjectsSection() {
 
   return (
     <section
+      id="projects"
       ref={sectionRef}
       className="!bg-black min-h-screen relative overflow-hidden"
     >
