@@ -57,7 +57,7 @@ const Footer = () => {
     {
       name: "Facebook",
       icon: FaFacebook,
-      href: "https://facebook.com/YOUR_USERNAME",
+      href: "https://facebook.com/ganeshkumbhar211",
       color: "hover:text-blue-600",
     },
   ];
