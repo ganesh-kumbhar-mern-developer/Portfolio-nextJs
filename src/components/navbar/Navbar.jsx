@@ -1,485 +1,10 @@
-// // "use client";
-// // import { useState, useEffect } from "react";
-// // import Image from "next/image";
-// // import { motion, AnimatePresence } from "framer-motion";
-// // import {
-// //   Menu,
-// //   X,
-// //   Sun,
-// //   Moon,
-// //   Home,
-// //   User,
-// //   Award,
-// //   FolderOpen,
-// //   Code,
-// //   Mail,
-// //   Sparkles,
-// // } from "lucide-react";
-
-// // const Navbar = ({ darkMode, toggleDarkMode, activeSection, sectionRefs }) => {
-// //   const [isSticky, setIsSticky] = useState(false);
-// //   const [menuOpen, setMenuOpen] = useState(false);
-
-// //   useEffect(() => {
-// //     const handleScroll = () => {
-// //       const sticky = window.scrollY > 50;
-// //       setIsSticky(sticky);
-// //     };
-
-// //     window.addEventListener("scroll", handleScroll);
-// //     return () => window.removeEventListener("scroll", handleScroll);
-// //   }, []);
-
-// //   const handleNavClick = (sectionKey) => {
-// //     const sectionRef = sectionRefs[sectionKey];
-// //     if (sectionRef?.current) {
-// //       sectionRef.current.scrollIntoView({
-// //         behavior: "smooth",
-// //         block: "start",
-// //       });
-// //       setMenuOpen(false);
-// //     }
-// //   };
-
-// //   const navItems = [
-// //     { key: "home", label: "Home", icon: Home },
-// //     { key: "about", label: "About", icon: User },
-// //     { key: "skills", label: "Skills", icon: Code },
-// //     { key: "certifications", label: "Certifications", icon: Award },
-// //     { key: "projects", label: "Projects", icon: FolderOpen },
-// //     { key: "contact", label: "Contact", icon: Mail },
-// //   ];
-
-// //   return (
-// //     <motion.header
-// //       initial={{ y: -100 }}
-// //       animate={{ y: 0 }}
-// //       transition={{ duration: 0.6, ease: "easeOut" }}
-// //       className={`header fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/95 border-b border-purple-500/20 shadow-2xl shadow-purple-500/10 `}
-// //     >
-// //       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-// //         <div className="flex items-center justify-between h-16 lg:h-20">
-// //           {/* Logo */}
-// //           <motion.div
-// //             whileHover={{ scale: 1.05 }}
-// //             whileTap={{ scale: 0.95 }}
-// //             className="logo flex items-center space-x-2 cursor-pointer"
-// //             onClick={() => handleNavClick("home")}
-// //           >
-// //             <div className="text-white font-bold text-xl">
-// //               <Image src="/logo2.png" width={200} height={100} alt="Logo" />
-// //             </div>
-// //           </motion.div>
-
-// //           {/* Desktop Navigation */}
-// //           <nav className="navbar hidden lg:flex items-center space-x-1">
-// //             {navItems.map((item) => {
-// //               const Icon = item.icon;
-// //               const isActive = activeSection === item.key;
-
-// //               return (
-// //                 <button
-// //                   key={item.key}
-// //                   onClick={() => handleNavClick(item.key)}
-// //                   className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all cursor-pointer duration-300 group ${
-// //                     isActive
-// //                       ? "text-white border-[rgb(117, 78, 249)] border-b-2"
-// //                       : "text-gray-300 hover:text-white"
-// //                   }`}
-// //                 >
-// //                   <Icon className="w-4 h-4" />
-// //                   <span className="font-medium">{item.label}</span>
-// //                 </button>
-// //               );
-// //             })}
-// //           </nav>
-
-// //           {/* Theme Toggle & Mobile Menu */}
-// //           <div className="flex items-center space-x-4">
-// //             {/* Theme Toggle */}
-// //             <motion.button
-// //               onClick={toggleDarkMode}
-// //               className="relative p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-purple-500/20 border border-purple-500/30 hover:from-purple-600/30 hover:to-purple-500/30 transition-all duration-300"
-// //               whileHover={{ scale: 1.1 }}
-// //               whileTap={{ scale: 0.9 }}
-// //             >
-// //               <AnimatePresence mode="wait">
-// //                 {darkMode ? (
-// //                   <motion.div
-// //                     key="sun"
-// //                     initial={{ rotate: -90, opacity: 0 }}
-// //                     animate={{ rotate: 0, opacity: 1 }}
-// //                     exit={{ rotate: 90, opacity: 0 }}
-// //                     transition={{ duration: 0.3 }}
-// //                   >
-// //                     <Sun className="w-5 h-5 text-yellow-400" />
-// //                   </motion.div>
-// //                 ) : (
-// //                   <motion.div
-// //                     key="moon"
-// //                     initial={{ rotate: 90, opacity: 0 }}
-// //                     animate={{ rotate: 0, opacity: 1 }}
-// //                     exit={{ rotate: -90, opacity: 0 }}
-// //                     transition={{ duration: 0.3 }}
-// //                   >
-// //                     <Moon className="w-5 h-5 text-purple-400" />
-// //                   </motion.div>
-// //                 )}
-// //               </AnimatePresence>
-// //             </motion.button>
-
-// //             {/* Mobile Menu Button */}
-// //             <motion.button
-// //               onClick={() => setMenuOpen(!menuOpen)}
-// //               className="lg:hidden p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-purple-500/20 border border-purple-500/30"
-// //               whileHover={{ scale: 1.1 }}
-// //               whileTap={{ scale: 0.9 }}
-// //             >
-// //               <AnimatePresence mode="wait">
-// //                 {menuOpen ? (
-// //                   <motion.div
-// //                     key="close"
-// //                     initial={{ rotate: -90, opacity: 0 }}
-// //                     animate={{ rotate: 0, opacity: 1 }}
-// //                     exit={{ rotate: 90, opacity: 0 }}
-// //                     transition={{ duration: 0.2 }}
-// //                   >
-// //                     <X className="w-6 h-6 text-white" />
-// //                   </motion.div>
-// //                 ) : (
-// //                   <motion.div
-// //                     key="menu"
-// //                     initial={{ rotate: 90, opacity: 0 }}
-// //                     animate={{ rotate: 0, opacity: 1 }}
-// //                     exit={{ rotate: -90, opacity: 0 }}
-// //                     transition={{ duration: 0.2 }}
-// //                   >
-// //                     <Menu className="w-6 h-6 text-white" />
-// //                   </motion.div>
-// //                 )}
-// //               </AnimatePresence>
-// //             </motion.button>
-// //           </div>
-// //         </div>
-// //       </div>
-
-// //       {/* Mobile Navigation */}
-// //       <AnimatePresence>
-// //         {menuOpen && (
-// //           <motion.div
-// //             initial={{ opacity: 0, height: 0 }}
-// //             animate={{ opacity: 1, height: "auto" }}
-// //             exit={{ opacity: 0, height: 0 }}
-// //             transition={{ duration: 0.3, ease: "easeInOut" }}
-// //             className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-purple-500/20"
-// //           >
-// //             <div className="px-4 py-6 space-y-2">
-// //               {navItems.map((item, index) => {
-// //                 const Icon = item.icon;
-// //                 const isActive = activeSection === item.key;
-// //                 return (
-// //                   <motion.button
-// //                     key={item.key}
-// //                     onClick={() => handleNavClick(item.key)}
-// //                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-// //                       isActive
-// //                         ? "text-white bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg shadow-purple-500/25"
-// //                         : "text-gray-300 hover:text-white hover:bg-purple-500/10"
-// //                     }`}
-// //                     initial={{ opacity: 0, x: -20 }}
-// //                     animate={{ opacity: 1, x: 0 }}
-// //                     transition={{ delay: index * 0.1 }}
-// //                     whileTap={{ scale: 0.95 }}
-// //                   >
-// //                     <Icon className="w-5 h-5" />
-// //                     <span className="font-medium">{item.label}</span>
-// //                     {isActive && (
-// //                       <motion.div
-// //                         className="ml-auto w-2 h-2 bg-white rounded-full"
-// //                         initial={{ scale: 0 }}
-// //                         animate={{ scale: 1 }}
-// //                         transition={{ delay: 0.2 }}
-// //                       />
-// //                     )}
-// //                   </motion.button>
-// //                 );
-// //               })}
-// //             </div>
-// //           </motion.div>
-// //         )}
-// //       </AnimatePresence>
-
-// //       {/* Gradient Border Effect */}
-// //       <motion.div
-// //         className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50"
-// //         initial={{ scaleX: 0 }}
-// //         animate={{ scaleX: isSticky ? 1 : 0 }}
-// //         transition={{ duration: 0.5 }}
-// //       />
-// //     </motion.header>
-// //   );
-// // };
-
-// // export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client";
-// import { useState, useEffect } from "react";
-// import Image from "next/image";
-// import { motion, AnimatePresence } from "framer-motion";
-// import {
-//   Menu,
-//   X,
-//   Sun,
-//   Moon,
-//   Home,
-//   User,
-//   Award,
-//   FolderOpen,
-//   Code,
-//   Mail,
-// } from "lucide-react";
-
-// const Navbar = ({ darkMode, toggleDarkMode, activeSection, sectionRefs }) => {
-//   const [isSticky, setIsSticky] = useState(false);
-//   const [menuOpen, setMenuOpen] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const sticky = window.scrollY > 50;
-//       setIsSticky(sticky);
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   const handleNavClick = (sectionKey) => {
-//     const sectionRef = sectionRefs[sectionKey];
-//     if (sectionRef?.current) {
-//       sectionRef.current.scrollIntoView({
-//         behavior: "smooth",
-//         block: "start",
-//       });
-//       setMenuOpen(false);
-//     }
-//   };
-
-//   const navItems = [
-//     { key: "home", label: "Home", icon: Home },
-//     { key: "about", label: "About", icon: User },
-//     { key: "skills", label: "Skills", icon: Code },
-//     { key: "certifications", label: "Certifications", icon: Award },
-//     { key: "projects", label: "Projects", icon: FolderOpen },
-//     { key: "contact", label: "Contact", icon: Mail },
-//   ];
-
-//   return (
-//     <motion.header
-//       initial={{ y: -100 }}
-//       animate={{ y: 0 }}
-//       transition={{ duration: 0.6, ease: "easeOut" }}
-//       className={`header fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/95 border-b border-purple-500/20 shadow-2xl shadow-purple-500/10 `}
-//     >
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="flex items-center justify-between h-16 lg:h-20">
-//           {/* Logo */}
-//           <motion.div
-//             whileHover={{ scale: 1.05 }}
-//             whileTap={{ scale: 0.95 }}
-//             className="logo flex items-center space-x-2 cursor-pointer"
-//             onClick={() => handleNavClick("home")}
-//           >
-//             <div className="text-white font-bold text-xl">
-//               <Image src="/logo2.png" width={200} height={100} alt="Logo" />
-//             </div>
-//           </motion.div>
-
-//           {/* Desktop Navigation */}
-//           <nav className="navbar hidden lg:flex items-center space-x-1">
-//             {navItems.map((item) => {
-//               const Icon = item.icon;
-//               const isActive = activeSection === item.key;
-
-//               return (
-//                 <button
-//                   key={item.key}
-//                   onClick={() => handleNavClick(item.key)}
-//                   className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all cursor-pointer duration-300 group ${
-//                     isActive
-//                       ? "text-white border-[rgb(117, 78, 249)] border-b-2"
-//                       : "text-gray-300 hover:text-white"
-//                   }`}
-//                 >
-//                   <Icon className="w-4 h-4" />
-//                   <span className="font-medium">{item.label}</span>
-//                 </button>
-//               );
-//             })}
-//           </nav>
-
-//           {/* Theme Toggle & Mobile Menu */}
-//           <div className="flex items-center space-x-4">
-//             {/* Theme Toggle */}
-//             <motion.button
-//               onClick={toggleDarkMode}
-//               className="relative p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-purple-500/20 border border-purple-500/30 hover:from-purple-600/30 hover:to-purple-500/30 transition-all duration-300"
-//               whileHover={{ scale: 1.1 }}
-//               whileTap={{ scale: 0.9 }}
-//             >
-//               <AnimatePresence mode="wait">
-//                 {darkMode ? (
-//                   <motion.div
-//                     key="sun"
-//                     initial={{ rotate: -90, opacity: 0 }}
-//                     animate={{ rotate: 0, opacity: 1 }}
-//                     exit={{ rotate: 90, opacity: 0 }}
-//                     transition={{ duration: 0.3 }}
-//                   >
-//                     <Sun className="w-5 h-5 text-yellow-400" />
-//                   </motion.div>
-//                 ) : (
-//                   <motion.div
-//                     key="moon"
-//                     initial={{ rotate: 90, opacity: 0 }}
-//                     animate={{ rotate: 0, opacity: 1 }}
-//                     exit={{ rotate: -90, opacity: 0 }}
-//                     transition={{ duration: 0.3 }}
-//                   >
-//                     <Moon className="w-5 h-5 text-purple-400" />
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-//             </motion.button>
-
-//             {/* Mobile Menu Button */}
-//             <motion.button
-//               onClick={() => setMenuOpen(!menuOpen)}
-//               className="lg:hidden p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-purple-500/20 border border-purple-500/30"
-//               whileHover={{ scale: 1.1 }}
-//               whileTap={{ scale: 0.9 }}
-//             >
-//               <AnimatePresence mode="wait">
-//                 {menuOpen ? (
-//                   <motion.div
-//                     key="close"
-//                     initial={{ rotate: -90, opacity: 0 }}
-//                     animate={{ rotate: 0, opacity: 1 }}
-//                     exit={{ rotate: 90, opacity: 0 }}
-//                     transition={{ duration: 0.2 }}
-//                   >
-//                     <X className="w-6 h-6 text-white" />
-//                   </motion.div>
-//                 ) : (
-//                   <motion.div
-//                     key="menu"
-//                     initial={{ rotate: 90, opacity: 0 }}
-//                     animate={{ rotate: 0, opacity: 1 }}
-//                     exit={{ rotate: -90, opacity: 0 }}
-//                     transition={{ duration: 0.2 }}
-//                   >
-//                     <Menu className="w-6 h-6 text-white" />
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-//             </motion.button>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Mobile Navigation */}
-//       <AnimatePresence>
-//         {menuOpen && (
-//           <motion.div
-//             initial={{ opacity: 0, height: 0 }}
-//             animate={{ opacity: 1, height: "auto" }}
-//             exit={{ opacity: 0, height: 0 }}
-//             transition={{ duration: 0.3, ease: "easeInOut" }}
-//             className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-purple-500/20"
-//           >
-//             <div className="px-4 py-6 space-y-2">
-//               {navItems.map((item, index) => {
-//                 const Icon = item.icon;
-//                 const isActive = activeSection === item.key;
-//                 return (
-//                   <motion.button
-//                     key={item.key}
-//                     onClick={() => handleNavClick(item.key)}
-//                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-//                       isActive
-//                         ? "text-white bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg shadow-purple-500/25"
-//                         : "text-gray-300 hover:text-white hover:bg-purple-500/10"
-//                     }`}
-//                     initial={{ opacity: 0, x: -20 }}
-//                     animate={{ opacity: 1, x: 0 }}
-//                     transition={{ delay: index * 0.1 }}
-//                     whileTap={{ scale: 0.95 }}
-//                   >
-//                     <Icon className="w-5 h-5" />
-//                     <span className="font-medium">{item.label}</span>
-//                     {isActive && (
-//                       <motion.div
-//                         className="ml-auto w-2 h-2 bg-white rounded-full"
-//                         initial={{ scale: 0 }}
-//                         animate={{ scale: 1 }}
-//                         transition={{ delay: 0.2 }}
-//                       />
-//                     )}
-//                   </motion.button>
-//                 );
-//               })}
-//             </div>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-
-//       {/* Gradient Border Effect */}
-//       <motion.div
-//         className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50"
-//         initial={{ scaleX: 0 }}
-//         animate={{ scaleX: isSticky ? 1 : 0 }}
-//         transition={{ duration: 0.5 }}
-//       />
-//     </motion.header>
-//   );
-// };
-
-// export default Navbar;
-
-
-
-
-
-
-
-
-
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Menu,
   X,
-  Sun,
-  Moon,
   Home,
   User,
   Award,
@@ -488,219 +13,146 @@ import {
   Mail,
 } from "lucide-react";
 
-const Navbar = ({ darkMode, toggleDarkMode, activeSection, sectionRefs }) => {
+const navItems = [
+  { key: "home", label: "Home", icon: Home },
+  { key: "about", label: "About", icon: User },
+  { key: "skills", label: "Skills", icon: Code },
+  { key: "certifications", label: "Certifications", icon: Award },
+  { key: "projects", label: "Projects", icon: FolderOpen },
+  { key: "contact", label: "Contact", icon: Mail },
+];
+
+const Navbar = ({ activeSection, sectionRefs }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sticky = window.scrollY > 50;
-      setIsSticky(sticky);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  const handleScroll = useCallback(() => {
+    setIsSticky(window.scrollY > 50);
   }, []);
 
-  const handleNavClick = (sectionKey) => {
-    const sectionRef = sectionRefs[sectionKey];
-    if (sectionRef?.current) {
-      sectionRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-      setMenuOpen(false);
-    }
-  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
-  const navItems = [
-    { key: "home", label: "Home", icon: Home },
-    { key: "about", label: "About", icon: User },
-    { key: "skills", label: "Skills", icon: Code },
-    { key: "certifications", label: "Certifications", icon: Award },
-    { key: "projects", label: "Projects", icon: FolderOpen },
-    { key: "contact", label: "Contact", icon: Mail },
-  ];
+  const handleNavClick = useCallback(
+    (sectionKey) => {
+      const sectionRef = sectionRefs[sectionKey];
+      if (sectionRef?.current) {
+        sectionRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        setMenuOpen(false);
+      }
+    },
+    [sectionRefs]
+  );
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="header fixed top-0 left-0 right-0 z-50 transition-all duration-500 
-        bg-white/95 dark:bg-black/95 
-        border-b border-purple-200 dark:border-purple-500/20 
-        shadow-lg shadow-gray-200/50 dark:shadow-2xl dark:shadow-purple-500/10"
+    <header
+      className="header fixed top-0 left-0 right-0 z-50 transition-colors duration-300
+        bg-black/95
+        border-b border-purple-500/20
+        shadow-2xl shadow-purple-500/10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="logo flex items-center space-x-2 cursor-pointer"
+          <div
             onClick={() => handleNavClick("home")}
+            className="logo flex items-center space-x-2 cursor-pointer select-none"
           >
             <div className="font-bold text-xl">
               <Image src="/logo2.png" width={200} height={100} alt="Logo" />
             </div>
-          </motion.div>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="navbar hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeSection === item.key;
-
+            {navItems.map(({ key, label, icon: Icon }) => {
+              const isActive = activeSection === key;
               return (
                 <button
-                  key={item.key}
-                  onClick={() => handleNavClick(item.key)}
-                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all cursor-pointer duration-300 group
+                  key={key}
+                  onClick={() => handleNavClick(key)}
+                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-full cursor-pointer select-none transition-colors duration-300
                     ${
                       isActive
-                        ? "text-purple-700 dark:text-white border-b-2 border-purple-500"
-                        : "text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-white"
+                        ? "text-white border-b-2 border-purple-500"
+                        : "text-purple-300 hover:text-white"
                     }`}
+                  type="button"
                 >
                   <Icon className="w-4 h-4" />
-                  <span className="font-medium">{item.label}</span>
+                  <span className="font-medium">{label}</span>
                 </button>
               );
             })}
           </nav>
 
-          {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <motion.button
-              onClick={toggleDarkMode}
-              className="relative p-3 rounded-full transition-all duration-300
-                bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-600/20 dark:to-purple-500/20
-                border border-purple-300 dark:border-purple-500/30
-                hover:from-purple-200 hover:to-purple-300 dark:hover:from-purple-600/30 dark:hover:to-purple-500/30"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <AnimatePresence mode="wait">
-                {darkMode ? (
-                  <motion.div
-                    key="sun"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Sun className="w-5 h-5 text-yellow-400" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="moon"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Moon className="w-5 h-5 text-purple-600" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
-
-            {/* Mobile Menu Button */}
-            <motion.button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-3 rounded-full transition-all duration-300
-                bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-600/20 dark:to-purple-500/20
-                border border-purple-300 dark:border-purple-500/30"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <AnimatePresence mode="wait">
-                {menuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="w-6 h-6 text-gray-800 dark:text-white" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="w-6 h-6 text-gray-800 dark:text-white" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen((open) => !open)}
+            className="lg:hidden p-3 rounded-full transition-colors duration-300
+              bg-gradient-to-r from-purple-600 to-purple-500
+              border border-purple-700"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? (
+              <X className="w-6 h-6 text-white" />
+            ) : (
+              <Menu className="w-6 h-6 text-white" />
+            )}
+          </button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden backdrop-blur-xl 
-              bg-white/95 dark:bg-black/95 
-              border-t border-purple-200 dark:border-purple-500/20"
-          >
-            <div className="px-4 py-6 space-y-2">
-              {navItems.map((item, index) => {
-                const Icon = item.icon;
-                const isActive = activeSection === item.key;
-                return (
-                  <motion.button
-                    key={item.key}
-                    onClick={() => handleNavClick(item.key)}
-                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 
-                      ${
-                        isActive
-                          ? "text-white bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg shadow-purple-500/25"
-                          : "text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-white hover:bg-purple-100 dark:hover:bg-purple-500/10"
-                      }`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{item.label}</span>
-                    {isActive && (
-                      <motion.div
-                        className="ml-auto w-2 h-2 bg-white rounded-full"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                      />
-                    )}
-                  </motion.button>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {menuOpen && (
+        <div
+          className="lg:hidden backdrop-blur-xl
+            bg-black/95
+            border-t border-purple-500/20"
+        >
+          <div className="px-4 py-6 space-y-2">
+            {navItems.map(({ key, label, icon: Icon }) => {
+              const isActive = activeSection === key;
+              return (
+                <button
+                  key={key}
+                  onClick={() => handleNavClick(key)}
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl select-none transition-colors duration-300
+                    ${
+                      isActive
+                        ? "text-white bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg shadow-purple-500/25"
+                        : "text-purple-300 hover:text-white hover:bg-purple-700/20"
+                    }`}
+                  type="button"
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="font-medium">{label}</span>
+                  {isActive && (
+                    <div className="ml-auto w-2 h-2 bg-white rounded-full" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Gradient Border Effect */}
       <motion.div
         className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50"
-        initial={{ scaleX: 0 }}
+        initial={false}
         animate={{ scaleX: isSticky ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
+        style={{ transformOrigin: "center" }}
       />
-    </motion.header>
+    </header>
   );
 };
 

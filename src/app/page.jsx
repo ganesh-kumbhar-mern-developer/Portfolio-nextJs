@@ -17,7 +17,6 @@ import ContactButtons from "@/components/contactButtons/ContactButtons";
 import JsonLdSchemas from "@/components/seo/JsonLdSchemas.jsx";
 
 export default function HomePage() {
-  const [darkMode, setDarkMode] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -31,31 +30,13 @@ export default function HomePage() {
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
 
-  // On mount: load saved theme from localStorage
+  // On mount: set dark mode and mounted state
   useEffect(() => {
     setMounted(true);
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "light") {
-      setDarkMode(false);
-    } else {
-      setDarkMode(true);
-    }
+    // Force dark mode and save to localStorage
+    localStorage.setItem("theme", "dark");
+    document.documentElement.classList.add("dark");
   }, []);
-
-  // Apply .dark class to <html> element whenever darkMode changes
-  useEffect(() => {
-    if (!mounted) return;
-
-    const html = document.documentElement;
-
-    if (darkMode) {
-      html.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      html.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode, mounted]);
 
   // Scroll tracking to highlight navbar
   useEffect(() => {
@@ -87,20 +68,15 @@ export default function HomePage() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Toggle dark/light mode
-  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   // Wake backend (Render) server
   useEffect(() => {
     const wakeServer = async () => {
       try {
-        await axios.get(
-          "https://portfolio-form-backend-t69y.onrender.com/api/wake-up"
-        );
+        await axios.get("https://portfolio-form-backend-t69y.onrender.com/api/wake-up");
       } catch (e) {}
     };
     wakeServer();
@@ -119,8 +95,6 @@ export default function HomePage() {
       <ToastProvider />
 
       <Navbar
-        darkMode={darkMode}
-        toggleDarkMode={toggleDarkMode}
         activeSection={activeSection}
         sectionRefs={{
           home: homeRef,

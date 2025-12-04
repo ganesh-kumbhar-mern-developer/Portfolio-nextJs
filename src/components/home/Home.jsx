@@ -97,11 +97,11 @@ export default function Home() {
 
               {/* Subtitle with Rotating Role */}
               <div className="flex flex-col items-center gap-4">
-                <h1 className="text-white text-2xl font-semibold">
+                <h1 className="text-white text-xl font-semibold">
                   Ganesh Kumbhar – MERN Stack Developer | React.js, Next.js, Node.js Expert
                 </h1>
                 <div className="h-2 flex items-center m-6">
-                  <h2 className="text-4xl font-bold sm:text-5xl text-purple-300 transition-all duration-500 inline-block">
+                  <h2 className="text-3xl font-bold sm:text-5xl text-purple-300 transition-all duration-500 inline-block">
                     {roles[currentRole]}
                   </h2>
                 </div>

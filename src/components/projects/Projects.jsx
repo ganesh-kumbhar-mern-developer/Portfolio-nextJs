@@ -15,6 +15,7 @@ import {
 import dreamHomesImage from "../../../public/images/dream-homes.png";
 import quickCartImage from "../../../public/images/quick-cart.png";
 import { redirect } from "next/navigation.js";
+import Link from "next/link"
 import Image from "next/image.js";
 
 const projects = [
@@ -34,7 +35,7 @@ const projects = [
     ],
     technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
     image: dreamHomesImage,
-    url: "/dream-homes",
+    url: "https://dream-homes.gktechhub.com",
     liveUrl: "https://dream-homes-fawn.vercel.app/",
     githubUrl: "https://github.com/Ganesh-D-Kumbhar/Dream-Homes",
     icon: Home,
@@ -243,14 +244,15 @@ export default function ProjectsSection() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <button
-                        onClick={() => redirect(project.url)}
+                      <Link
+                        target="_blank"
+                        href={project.url}
                         className={`flex items-center justify-center bg-gradient-to-r ${project.color} hover:scale-105 text-white font-semibold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 group`}
                       >
                         <Eye className="w-5 h-5 mr-2" />
                         View Live Demo
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                      </button>
+                      </Link>
                       <a
                         target="_blank"
                         href={project.githubUrl}

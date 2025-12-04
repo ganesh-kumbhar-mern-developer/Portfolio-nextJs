@@ -49,7 +49,6 @@ const Contact = () => {
       id="contact"
       className="relative min-h-screen px-4 sm:px-6 md:px-8 lg:px-16 xl:px-36 overflow-hidden bg-black w-full py-10"
     >
-      <AnimatedBackground />
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Header */}
