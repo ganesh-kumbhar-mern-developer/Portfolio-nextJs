@@ -221,18 +221,6 @@ const Footer = () => {
         </div>
       </footer>
 
-      {/* Scroll to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg shadow-purple-500/25 border border-purple-500/30 transition-all duration-300 hover:shadow-purple-500/40 hover:scale-110 hover:-translate-y-1 ${
-          isVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-      >
-        <ArrowUp className="w-6 h-6 mx-auto" />
-      </button>
-
       <ContactPopUpForm
         isOpen={isContactPopupOpen}
         onClose={() => setIsContactPopupOpen(false)}
