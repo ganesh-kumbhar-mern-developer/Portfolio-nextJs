@@ -11,11 +11,15 @@ import {
   FolderOpen,
   Code,
   Mail,
+  Briefcase,
+  GraduationCap,
 } from "lucide-react";
 
 const navItems = [
   { key: "home", label: "Home", icon: Home },
   { key: "about", label: "About", icon: User },
+  { key: "experience", label: "Experience", icon: Briefcase },
+  { key: "education", label: "Education", icon: GraduationCap },
   { key: "skills", label: "Skills", icon: Code },
   { key: "certifications", label: "Certifications", icon: Award },
   { key: "projects", label: "Projects", icon: FolderOpen },

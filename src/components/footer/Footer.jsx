@@ -153,6 +153,7 @@ const Footer = () => {
                 {contactInfo.map((item, index) => (
                   <a
                     key={index}
+                    target="_blank"
                     href={item.href}
                     className="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group"
                   >
@@ -180,6 +181,7 @@ const Footer = () => {
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
+                    target="_blank"
                     href={social.href}
                     className={`w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 ${social.color} transition-all duration-300 hover:scale-110 hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-blue-500/20 hover:border hover:border-purple-500/30`}
                   >

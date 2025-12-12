@@ -5,7 +5,19 @@ const JsonLdSchemas = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Ganesh Kumbhar",
+    alternateName: [
+      "Er. Ganesh Kumbhar",
+      "Ganesh Kumbhar Web Developer",
+      "Ganesh Kumbhar React Developer",
+      "Ganesh Kumbhar MERN Developer",
+      "Ganesh Web Developer",
+      "Ganesh Full Stack Developer",
+      "Ganesh K.",
+    ],
+    additionalName: ["Ganesh", "Kumbhar"],
     jobTitle: "MERN Stack Developer",
+    description:
+      "Ganesh Kumbhar – MERN Stack Developer, React.js Developer, Full Stack Web Developer, Freelancer, Website Builder based in Pune, India.",
     email: "mailto:ganeshhh2003@gmail.com",
     telephone: "+919096378354",
     address: {
@@ -17,9 +29,16 @@ const JsonLdSchemas = () => {
     },
     url: "https://gktechhub.com",
     image: "https://gktechhub.com/og-image.png",
+    brand: {
+      "@type": "Brand",
+      name: "GK TechHub",
+      alternateName: ["gktechhub", "GK Tech Hub"],
+      url: "https://gktechhub.com",
+      slogan: "Professional MERN Stack Developer Portfolio",
+    },
     sameAs: [
-      "https://github.com/Ganesh-D-Kumbhar",
-      "https://www.linkedin.com/in/ganesh-d-kumbhar",
+      "https://github.com/ganesh-kumbhar-mern-developer",
+      "https://www.linkedin.com/in/ganesh-kumbhar-mern-developer",
       "https://www.hackerrank.com/profile/ganeshhh2003",
       "https://www.instagram.com/ganesh_kumbhar_211",
       "https://www.facebook.com/ganeshkumbhar211",
@@ -36,6 +55,8 @@ const JsonLdSchemas = () => {
       "Express.js",
       "MongoDB",
       "JavaScript",
+      "Frontend Development",
+      "Backend Development",
       "Full Stack Development",
       "REST APIs",
       "Micro Frontends",
@@ -44,6 +65,21 @@ const JsonLdSchemas = () => {
       "Bootstrap",
       "AWS Basics",
       "Git/GitHub",
+      "Freelancing",
+      "Website Builder",
+    ],
+    keywords: [
+      "Ganesh Kumbhar",
+      "Er. Ganesh Kumbhar",
+      "Ganesh Kumbhar Web Developer",
+      "React Developer",
+      "MERN Developer",
+      "Full Stack Developer",
+      "Freelancer",
+      "Website Builder",
+      "GK TechHub",
+      "gktechhub",
+      "Ganesh Portfolio",
     ],
   };
 
@@ -51,12 +87,26 @@ const JsonLdSchemas = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "GK TechHub – Portfolio of Ganesh Kumbhar",
+    alternateName: [
+      "Ganesh Kumbhar Portfolio",
+      "GK TechHub",
+      "gktechhub",
+      "Ganesh MERN Portfolio",
+    ],
     url: "https://gktechhub.com",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://gktechhub.com/?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
+    keywords: [
+      "GK TechHub",
+      "gktechhub",
+      "Ganesh Kumbhar",
+      "Portfolio",
+      "React Developer",
+      "MERN Stack Developer",
+    ],
   };
 
   const breadcrumbSchema = {
@@ -77,7 +127,7 @@ const JsonLdSchemas = () => {
     "@type": "CreativeWork",
     name: "Dream Homes – Real Estate Website",
     description:
-      "A modern, responsive real estate web application featuring property listings for 2BHK, 3BHK, 4BHK, penthouses, villas, studios, duplexes, and townhouses for both rent and sale.",
+      "Dream Homes – A modern real estate application with property listings for 2BHK, 3BHK, 4BHK, penthouses, villas, studios, duplexes, and townhouses for rent and sale. Developed by MERN & React Developer Ganesh Kumbhar.",
     image: "https://gktechhub.com/dream-homes/og-image.jpg",
     url: "https://gktechhub.com/dream-homes",
     creator: {
@@ -94,7 +144,6 @@ const JsonLdSchemas = () => {
       "Buy Property",
       "Rent Property",
       "Dream Homes",
-      "Real Estate App",
       "MERN Real Estate Project",
     ],
     inLanguage: "en",
@@ -110,8 +159,8 @@ const JsonLdSchemas = () => {
       name: "Seven Mentor Pvt. Ltd.",
     },
     sameAs: [
-      "https://github.com/Ganesh-D-Kumbhar",
-      "https://www.linkedin.com/in/ganesh-d-kumbhar",
+      "https://github.com/ganesh-kumbhar-mern-developer",
+      "https://www.linkedin.com/in/ganesh-kumbhar-mern-developer",
       "https://www.hackerrank.com/profile/ganeshhh2003",
     ],
     alumniOf: {
@@ -141,7 +190,7 @@ const JsonLdSchemas = () => {
         "@type": "Occupation",
         name: "ReactJs Developer",
         description:
-          "Developing full-stack MERN applications, implementing micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
+          "Developing full-stack MERN applications, micro-frontend architecture, secure REST APIs, and NodeMailer OAuth2.0 integration.",
         startDate: "2025-02",
         employmentType: "Full-time",
       },
@@ -157,9 +206,16 @@ const JsonLdSchemas = () => {
     ],
     url: "https://gktechhub.com",
     sameAs: [
-      "https://github.com/Ganesh-D-Kumbhar",
-      "https://www.linkedin.com/in/ganesh-d-kumbhar",
+      "https://github.com/ganesh-kumbhar-mern-developer",
+      "https://www.linkedin.com/in/ganesh-kumbhar-mern-developer",
       "https://www.hackerrank.com/profile/ganeshhh2003",
+    ],
+    keywords: [
+      "React Developer",
+      "MERN Stack Developer",
+      "Full Stack Developer",
+      "Ganesh Kumbhar",
+      "gktechhub",
     ],
   };
 

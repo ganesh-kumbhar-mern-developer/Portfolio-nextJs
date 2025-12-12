@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, memo } from "react";
 import {
   Linkedin,
   Github,
@@ -24,13 +24,104 @@ const roles = [
   "React.js, Next.js, Node.js Expert"
 ];
 
+// Memoized components to prevent unnecessary re-renders
+const HeroHeading = memo(() => (
+  <h3 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+    <span className="block bg-gradient-to-r from-purple-200 via-purple-100 to-purple-300 bg-clip-text text-transparent">
+      Transforming Ideas
+    </span>
+    <span className="block bg-gradient-to-r from-purple-200 via-purple-100 to-purple-300 bg-clip-text text-transparent">
+      Into Fast,
+    </span>
+    <span className="block bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent">
+      Modern Digital Experiences
+    </span>
+  </h3>
+));
+HeroHeading.displayName = 'HeroHeading';
+
+const Subtitle = memo(() => (
+  <h1 className="text-white text-xl font-semibold">
+    Ganesh Kumbhar – MERN Stack Developer | React.js, Next.js, Node.js Expert
+  </h1>
+));
+Subtitle.displayName = 'Subtitle';
+
+const Description = memo(() => (
+  <p className="max-w-4xl mx-auto text-sm sm:text-base text-gray-400 leading-relaxed font-light">
+    Crafting{" "}
+    <span className="text-purple-300 font-medium">
+      performant, accessible, and beautiful interfaces
+    </span>{" "}
+    using React, Next.js, Node.js, and modern web technologies. I
+    specialize in building production-ready applications that users
+    love.
+  </p>
+));
+Description.displayName = 'Description';
+
+// Memoized CTA Buttons component
+const CTAButtons = memo(({ onDownloadClick, onViewProjectsClick }) => (
+  <div
+    className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4"
+    style={{ animationDelay: "0.2s" }}
+  >
+    <button
+      onClick={onDownloadClick}
+      className="group relative px-8 py-3.5 text-sm sm:text-base font-semibold text-white rounded-lg bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-105 flex items-center justify-between gap-2"
+    >
+      <span>Download Resume</span>
+      <ArrowDown className="absolute right-3 w-4 h-4 text-2xl font-bold group-hover:translate-x-1 transition-transform" />
+    </button>
+    <button
+      onClick={onViewProjectsClick}
+      className="px-8 py-3.5 text-sm sm:text-base font-semibold text-purple-200 rounded-lg border border-purple-500/40 bg-white/5 hover:bg-white/10 hover:border-purple-400/60 transition-all duration-300 backdrop-blur-sm"
+    >
+      View Projects
+    </button>
+  </div>
+));
+CTAButtons.displayName = 'CTAButtons';
+
+// Memoized rotating role component
+const RotatingRole = memo(({ role }) => (
+  <div className="h-2 flex items-center m-6">
+    <h2 className="text-3xl font-bold sm:text-5xl text-purple-300 transition-all duration-500 inline-block">
+      {role}
+    </h2>
+  </div>
+));
+RotatingRole.displayName = 'RotatingRole';
+
 export default function Home() {
   const [currentRole, setCurrentRole] = useState(0);
   const [isInView, setIsInView] = useState(false);
-  const sectionRef = useRef(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  const sectionRef = useRef(null);
+  const intervalRef = useRef(null);
 
+  // Memoized handlers to prevent function recreation on each render
+  const handleDownloadClick = useCallback(() => {
+    setIsFormOpen(true);
+  }, []);
+
+  const handleViewProjectsClick = useCallback(() => {
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
+  const handleFormClose = useCallback(() => {
+    setIsFormOpen(false);
+  }, []);
+
+  // Intersection Observer setup
   useEffect(() => {
+    const currentSection = sectionRef.current;
+    if (!currentSection) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -41,30 +132,29 @@ export default function Home() {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    observer.observe(currentSection);
+
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
     };
   }, []);
 
+  // Role rotation effect
   useEffect(() => {
     if (!isInView) return;
-    const id = setInterval(
-      () => setCurrentRole((prev) => (prev + 1) % roles.length),
-      3000
-    );
-    return () => clearInterval(id);
-  }, [isInView]);
 
-  const handleDownloadClick = () => {
-    setIsFormOpen(true);
-  };
-  const handleViewProjectsClick = () => {
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+    intervalRef.current = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3000);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isInView]);
 
   return (
     <section
@@ -83,68 +173,30 @@ export default function Home() {
           >
             {/* Main Heading */}
             <div className="space-y-6">
-              <h3 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
-                <span className="block bg-gradient-to-r from-purple-200 via-purple-100 to-purple-300 bg-clip-text text-transparent">
-                  Transforming Ideas
-                </span>
-                <span className="block bg-gradient-to-r from-purple-200 via-purple-100 to-purple-300 bg-clip-text text-transparent">
-                  Into Fast,
-                </span>
-                <span className="block bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent">
-                  Modern Digital Experiences
-                </span>
-              </h3>
+              <HeroHeading />
 
               {/* Subtitle with Rotating Role */}
               <div className="flex flex-col items-center gap-4">
-                <h1 className="text-white text-xl font-semibold">
-                  Ganesh Kumbhar – MERN Stack Developer | React.js, Next.js, Node.js Expert
-                </h1>
-                <div className="h-2 flex items-center m-6">
-                  <h2 className="text-3xl font-bold sm:text-5xl text-purple-300 transition-all duration-500 inline-block">
-                    {roles[currentRole]}
-                  </h2>
-                </div>
+                <Subtitle />
+                <RotatingRole role={roles[currentRole]} />
               </div>
             </div>
 
             {/* Description */}
-            <p className="max-w-4xl mx-auto text-sm sm:text-base text-gray-400 leading-relaxed font-light">
-              Crafting{" "}
-              <span className="text-purple-300 font-medium">
-                performant, accessible, and beautiful interfaces
-              </span>{" "}
-              using React, Next.js, Node.js, and modern web technologies. I
-              specialize in building production-ready applications that users
-              love.
-            </p>
+            <Description />
 
             {/* CTA Buttons */}
-            <div
-              className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4"
-              style={{ animationDelay: "0.2s" }}
-            >
-              <button
-                onClick={handleDownloadClick}
-                className="group relative px-8 py-3.5 text-sm sm:text-base font-semibold text-white rounded-lg bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-105 flex items-center justify-between gap-2"
-              >
-                <span>Download Resume</span>
-                <ArrowDown className="absolute right-3 w-4 h-4 text-2xl font-bold group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={handleViewProjectsClick}
-                className="px-8 py-3.5 text-sm sm:text-base font-semibold text-purple-200 rounded-lg border border-purple-500/40 bg-white/5 hover:bg-white/10 hover:border-purple-400/60 transition-all duration-300 backdrop-blur-sm"
-              >
-                View Projects
-              </button>
-            </div>
+            <CTAButtons 
+              onDownloadClick={handleDownloadClick}
+              onViewProjectsClick={handleViewProjectsClick}
+            />
           </div>
         </div>
       </div>
 
       <PopUpForm
         isOpen={isFormOpen}
-        onClose={() => setIsFormOpen(false)}
+        onClose={handleFormClose}
         isResume={true}
       />
     </section>
