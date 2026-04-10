@@ -170,7 +170,7 @@ const ContactForm = () => {
       try {
         setSubmitting(true);
 
-        await axios.post("https://portfolio-form-backend-t69y.onrender.com/api/contact-form", values, {
+        await axios.post("/api/contact", values, {
           timeout: 10000,
         });
 
