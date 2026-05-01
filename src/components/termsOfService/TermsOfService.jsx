@@ -209,19 +209,6 @@ export default function TermsOfService() {
             ))}
           </div>
 
-          {/* Footer CTA */}
-          <div className="mt-12 bg-gradient-to-r from-purple-600/20 to-purple-500/20 border border-purple-500/30 rounded-lg p-8 text-center">
-            <h3 className="text-xl font-bold mb-3">Questions About Our Terms?</h3>
-            <p className="text-gray-400 mb-4">
-              If you have any concerns or questions, please reach out.
-            </p>
-            <a
-              href="mailto:ganeshhh2003@gmail.com"
-              className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg transition"
-            >
-              Contact Me
-            </a>
-          </div>
         </div>
       </div>
     </main>
