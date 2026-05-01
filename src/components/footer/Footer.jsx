@@ -214,11 +214,30 @@ const Footer = () => {
               <span>by Ganesh Kumbhar</span>
             </div>
 
-            <p className="text-gray-400 text-sm flex items-center">
-              <Code className="w-4 h-4 mr-2" />
-              Copyright &copy; {currentYear} | gktechhub.com | All rights
-              reserved
-            </p>
+            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-gray-400 text-sm">
+              <p className="flex items-center">
+                <Code className="w-4 h-4 mr-2" />
+                Copyright &copy; {currentYear} | gktechhub.com | All rights reserved
+              </p>
+              
+              {/* Privacy & Terms Links */}
+              <div className="flex items-center space-x-3">
+                <span className="hidden sm:inline text-gray-600">|</span>
+                <a
+                  href="/privacy-policy"
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  Privacy Policy
+                </a>
+                <span className="text-gray-600">|</span>
+                <a
+                  href="/terms-of-service"
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  Terms of Service
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
