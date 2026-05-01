@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -14,6 +15,7 @@ import {
   Briefcase,
   GraduationCap,
 } from "lucide-react";
+import { useNavbar } from "@/context/NavbarContext.jsx";
 
 const navItems = [
   { key: "home", label: "Home", icon: Home },
@@ -26,9 +28,12 @@ const navItems = [
   { key: "contact", label: "Contact", icon: Mail },
 ];
 
-const Navbar = ({ activeSection, sectionRefs }) => {
+const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const { activeSection, sectionRefs, setTargetSection } = useNavbar();
 
   const handleScroll = useCallback(() => {
     setIsSticky(window.scrollY > 50);
@@ -41,16 +46,35 @@ const Navbar = ({ activeSection, sectionRefs }) => {
 
   const handleNavClick = useCallback(
     (sectionKey) => {
-      const sectionRef = sectionRefs[sectionKey];
-      if (sectionRef?.current) {
-        sectionRef.current.scrollIntoView({
+      // If we have section refs (on home page), use them to scroll
+      if (sectionRefs && sectionRefs[sectionKey]?.current) {
+        sectionRefs[sectionKey].current.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
         setMenuOpen(false);
+        return;
+      }
+
+      // If not on home page, set target section in context and navigate to home
+      if (pathname !== "/") {
+        setTargetSection(sectionKey);
+        router.push("/");
+        setMenuOpen(false);
+      } else {
+        // On home page but refs not ready, try again in a moment
+        setTimeout(() => {
+          if (sectionRefs && sectionRefs[sectionKey]?.current) {
+            sectionRefs[sectionKey].current.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        }, 100);
+        setMenuOpen(false);
       }
     },
-    [sectionRefs]
+    [sectionRefs, pathname, router, setTargetSection],
   );
 
   return (

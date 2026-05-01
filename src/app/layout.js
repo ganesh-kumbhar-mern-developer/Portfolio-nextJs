@@ -1,4 +1,5 @@
 import "./globals.css";
+import LayoutClient from "@/components/layout/LayoutClient.jsx";
 
 export const metadata = {
   metadataBase: new URL("https://gktechhub.com"),
@@ -79,7 +80,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        {children}
+        <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
   );
