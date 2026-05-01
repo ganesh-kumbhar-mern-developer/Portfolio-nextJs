@@ -114,8 +114,8 @@ const PopUpForm = ({ isOpen, onClose, isResume = false }) => {
   const downloadResume = useCallback(() => {
     try {
       const link = document.createElement("a");
-      link.href = "/updated-resume-ganesh-kumbhar.pdf";
-      link.download = "updated-resume-ganesh-kumbhar.pdf";
+      link.href = "/ganesh-kumbhar-fullstack-developer.pdf";
+      link.download = "ganesh-kumbhar-fullstack-developer.pdf";
       link.style.display = "none";
       document.body.appendChild(link);
       link.click();
